@@ -28,7 +28,7 @@ module.exports={
             });
 
         temperature.on('data',function(){
-            self.currentTemp = this.celsius + "°C" + " || "+ this.fahrenheit + "°F";
+            self.currentTemp = this.celsius;
             //console.log(currentTemp);
         });
 

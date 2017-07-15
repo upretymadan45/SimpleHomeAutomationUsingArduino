@@ -3,16 +3,19 @@
 <head>
   <title>Home Automation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/app.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
   <script src="/socket.io/socket.io.js"></script>
   <script src="./scripts/app.js"></script>
 </head>
 
 <body>
-  <div class = "container-fluid" style="margin:100px;">
+  <div class="container-fluid" style="margin:100px;">
     <nav class="navbar navbar-inverse navbar-static-top">
       <div class="container">
         <a class="navbar-brand" href="/api">Simple Home Automation</a>
@@ -51,16 +54,21 @@
           <div class="col-sm-6 col-sm-offset-3"><strong>Temperature Data</strong></div>
         </div>
         <div class="row">
-          <div class="col-sm-6 col-sm-offset-3 spinner" id = "temperature">
+          <div class="col-sm-6 col-sm-offset-3 spinner" id="temperature">
             <span class="bounce1"></span>
-          <span class="bounce2"></span>
-          <span class="bounce3"></span>
+            <span class="bounce2"></span>
+            <span class="bounce3"></span>
           </div>
         </div>
-        
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3" id = "chart_div">
+
+          </div>
+        </div>
+
       </div>
     </div>
-    <script src = "./scripts/app.socket.js"></script>
+    <script src="./scripts/app.socket.js"></script>
 </body>
 
 </html>
