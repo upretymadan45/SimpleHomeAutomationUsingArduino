@@ -1,40 +1,49 @@
-var express    = require('express');        
-var app        = express();                 
+var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 var open = require('open');
+var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 var service = require('./service.js');
 
+io.on('connection', function (socket) {
+    console.log("socket connection established");
+
+    setInterval(function () {
+        var self = this;
+        var temperature = "";
+        setTimeout(function () {
+            self.temperature = service.readTemperature();
+        }, 5000);
+        socket.emit('temperature',self.temperature);
+        console.log('temperature emitted'+self.temperature);
+    }, 5000);
+});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static('scripts'));
 
-var port = process.env.PORT || 8080;        
-var router = express.Router();              
+var port = process.env.PORT || 8080;
+var router = express.Router();
 
-router.get('/board/:pin/:command', function(req, res) {
-    var pin =req.params.pin;
+router.get('/board/:pin/:command', function (req, res) {
+    var pin = req.params.pin;
     var command = req.params.command;
-    var result = service.activateRelay(command,pin);
-    res.json({ message: result });   
+    var result = service.activateRelay(command, pin);
+    res.json({ message: result });
 });
 
-router.get('/board/temperature', function(req,res){
-    var temperature = service.readTemperature();
-    console.log(temperature);
-    res.json({currentTemperature:temperature});
-});
-
-router.get('/',function(req,res){
-    res.sendFile(path.join(__dirname+'/index.html'));
+router.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 
 app.use('/api', router);
 
-app.listen(port);
-open("http://localhost:"+port+'/api');
+http.listen(port);
+open("http://localhost:" + port + '/api');
 
 console.log('Magic happens on port ' + port);

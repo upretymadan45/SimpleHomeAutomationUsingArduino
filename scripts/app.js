@@ -1,7 +1,5 @@
 $(function(){
 
-    readTemperature();
-
     $('.control').on('click',function(){
         var source = $(this);
         var pin = $('#selectPin').val();
@@ -24,26 +22,6 @@ $(function(){
             },
             error:function(error){
                 source.html('Failed');
-            }
-        });
-    }
-
-    function readTemperature(){
-        var temperature = $('#temperature');
-        $.ajax({
-            url: '/api/board/temperature',
-            method: 'get',
-            beforeSend: function(){
-                
-            },
-            success: function(result){
-                if(result.currentTemperature)
-                    temperature.append(result.currentTemperature);
-                else
-                    temperature.append('fetching temperature..');
-            },
-            error: function(error){
-                
             }
         });
     }

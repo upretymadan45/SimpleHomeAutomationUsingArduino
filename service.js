@@ -24,7 +24,7 @@ module.exports={
         var temperature = new five.Thermometer({
                 controller: "LM35",
                 pin: "A0",
-                freq: 2000
+                freq: 5000
             });
 
         temperature.on('data',function(){
