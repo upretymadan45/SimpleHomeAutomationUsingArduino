@@ -17,8 +17,7 @@ io.on('connection', function (socket) {
         setTimeout(function () {
             self.temperature = service.readTemperature();
         }, 5000);
-        socket.emit('temperature',self.temperature);
-        console.log('temperature emitted'+self.temperature);
+        socket.emit('temperature', self.temperature);
     }, 5000);
 });
 
@@ -40,6 +39,13 @@ router.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 
+router.get('/status/:pinNumber', function (req, res) {
+    var pinNumber = req.params.pinNumber;
+    var status = service.readPinState(pinNumber);
+    res.json({
+        pinStatus: status
+    });
+});
 
 app.use('/api', router);
 
