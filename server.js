@@ -39,14 +39,6 @@ router.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-router.get('/status/:pinNumber', function (req, res) {
-    var pinNumber = req.params.pinNumber;
-    var status = service.readPinState(pinNumber);
-    res.json({
-        pinStatus: status
-    });
-});
-
 app.use('/api', router);
 
 http.listen(port);

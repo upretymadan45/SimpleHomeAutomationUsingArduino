@@ -4,6 +4,7 @@
   <title>Home Automation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link rel = "stylesheet" href = "./css/creulean.bootstrap.min.css">
   <link rel="stylesheet" href="./css/app.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -15,10 +16,10 @@
 </head>
 
 <body>
-  <div class="container-fluid" style="margin:100px;">
-    <nav class="navbar navbar-inverse navbar-static-top">
+  <div class="container-fluid">
+    <nav class="navbar navbar-inverse">
       <div class="container">
-        <a class="navbar-brand" href="/api">Simple Home Automation</a>
+        <a class="navbar-brand" href="/api">HA</a>
         <ul class="nav navbar-nav">
           <li class="active">
             <a href="api">Home</a>
@@ -26,13 +27,14 @@
         </ul>
       </div>
     </nav>
-    <div class="container-fluid" style="padding:40px;">
-      <div class="col-sm-6">
-        <from class="form-inline">
-          <div class="form-group">
-            <label for='selectPin'>Select Output</label>
+  </div>
+  <div class="container-fluid">
+    <div class="col-sm-6">
+      <from class="form-inline">
+        <div class="form-group">
+          <label for='selectPin'>Select Output</label>
 
-            <select id='selectPin' class='form-control selection'>
+          <select id='selectPin' class='form-control selection'>
                 <option value=4>Pin 4</option>
                 <option value=5>Pin 5</option>
                 <option value=6>Pin 6</option>
@@ -41,34 +43,34 @@
                 <option value=9>Pin 9</option>
                 <option value=10>Pin 10</option>
               </select>
-          </div>
+        </div>
 
-          <div class="form-group">
-            <button class='btn btn-primary' id='control' control-flag='1'>
+        <div class="form-group">
+          <button class='btn btn-primary' id='control' control-flag='1'>
                     ON
             </button>
-          </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="row">
-          <div class="col-sm-6 col-sm-offset-3"><strong>Temperature Data</strong></div>
         </div>
-        <div class="row">
-          <div class="col-sm-6 col-sm-offset-3 spinner" id="temperature">
-            <span class="bounce1"></span>
-            <span class="bounce2"></span>
-            <span class="bounce3"></span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6 col-sm-offset-3" id = "chart_div">
-
-          </div>
-        </div>
-
-      </div>
     </div>
-    <script src="./scripts/app.socket.js"></script>
+    <div class="col-sm-6">
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3"><strong>Temperature Data</strong></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 spinner" id="temperature">
+          <span class="bounce1"></span>
+          <span class="bounce2"></span>
+          <span class="bounce3"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3" id="chart_div">
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <script src="./scripts/app.socket.js"></script>
 </body>
 
 </html>
